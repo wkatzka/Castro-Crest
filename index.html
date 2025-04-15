@@ -6,7 +6,7 @@
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,9 +14,11 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       font-family: 'Lora', serif;
       color: #fff;
+      height: 100%;
+      margin: 0;
     }
 
     .home-bg {
@@ -32,6 +34,10 @@
       padding: 60px;
     }
 
+    .content {
+      max-width: 800px;
+    }
+
     nav {
       position: absolute;
       top: 20px;
@@ -41,7 +47,7 @@
     }
 
     nav a {
-      font-family: 'Special Gothic Expanded One', sans-serif;
+      font-family: 'Oswald', sans-serif;
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -56,27 +62,69 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    .overlay-text {
-      text-align: left;
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
 
-    .overlay-text h1 {
-      font-family: 'Special Gothic Expanded One', sans-serif;
-      font-size: 120px;
-      line-height: 1;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      width: fit-content;
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
     }
   </style>
 </head>
 <body>
   <div class="home-bg">
     <nav>
+      <a href="index.html">Home</a>
       <a href="thesis.html">Thesis</a>
       <a href="team.html">Team</a>
-      <a href="Collaboration.html">Collaboration</a>
     </nav>
-    <div class="overlay-text">
-      <h1>Castro<br>Crest</h1>
+    <div class="content">
+      <h1>Collaboration</h1>
+      <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we’d love to explore how we can partner to bring it to life.</p>
+      <form action="mailto:wkatzka@gmail.com" method="POST" enctype="multipart/form-data">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="proposal">Attach Proposal</label>
+        <input type="file" id="proposal" name="proposal" required>
+
+        <button type="submit">Submit Proposal</button>
+      </form>
     </div>
   </div>
 </body>
