@@ -130,7 +130,7 @@
 
         <button type="submit">Submit Proposal</button>
       </form>
-<div id="success-message" style="position: absolute; color: white; font-weight: bold; font-size: 18px; opacity: 0; transition: all 2s ease;">Success! Your proposal has been submitted.</div>
+<div id="success-message" style="position: relative; color: white; font-weight: bold; font-size: 18px; opacity: 0; transition: all 2s ease; margin-top: 40px;">Success! Your proposal has been submitted.</div>
 </div>
   </div>
 <script>
@@ -138,21 +138,18 @@
   const message = document.getElementById('success-message');
 
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formRect = form.getBoundingClientRect();
-    message.style.top = `${form.offsetTop + form.offsetHeight / 2}px`;
-    message.style.left = `${form.offsetLeft}px`;
-    message.style.opacity = 1;
-    message.style.transform = 'translateY(-100px)';
+  e.preventDefault();
+  message.style.opacity = 1;
+  message.style.transform = 'translateY(-50px)';
 
-    setTimeout(() => {
-      form.style.opacity = 0;
-    }, 800);
+  setTimeout(() => {
+    form.style.opacity = 0;
+  }, 800);
 
-    setTimeout(() => {
-      form.style.display = 'none';
-    }, 2000);
-  });
+  setTimeout(() => {
+    form.style.display = 'none';
+  }, 2000);
+});
 </script>
 </body>
 </html>
