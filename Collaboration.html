@@ -130,42 +130,54 @@
     <div class="content">
       <h1>Collaboration</h1>
       <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we’d love to explore how we can partner to bring it to life.</p>
-      <form action="https://formsubmit.co/wkatzka@gmail.com" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_next" value="https://castrocrest.com/thankyou.html">
+      <form id="collabForm" method="POST">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required>
 
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Write a short message..."></textarea>
 
-        <label for="proposal">Attach Documents</label>
-        <input type="file" id="proposal" name="proposal" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Write a short message..."></textarea>
-
-        <button type="submit">Submit Proposal</button>
-      </form>
+  <button type="submit">Submit Proposal</button>
+</form>
+<div id="success-message">Success! Your proposal has been submitted.</div>
       <div id="success-message">Success! Your proposal has been submitted.</div>
     </div>
   </div>
 <script>
-  const form = document.querySelector('form');
+  const form = document.getElementById('collabForm');
   const message = document.getElementById('success-message');
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    message.style.opacity = 1;
-    message.style.transform = 'translateY(-300px)';
 
-    setTimeout(() => {
-      form.style.opacity = 0;
-    }, 800);
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+    for (const [key, value] of formData.entries()) {
+      params.append(key, value);
+    }
 
-    setTimeout(() => {
-      form.style.display = 'none';
-    }, 2000);
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbywYPsZZ4EhoL6JObPsyIr8hIIitry7KfMVC244LZOylH9MeQ2bcRZrHhomvmyfz6ma/exec", {
+        method: 'POST',
+        body: params
+      });
+
+      message.style.opacity = 1;
+      message.style.transform = 'translateY(-220px)';
+
+      setTimeout(() => {
+        form.style.opacity = 0;
+      }, 800);
+
+      setTimeout(() => {
+        form.style.display = 'none';
+      }, 2000);
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    }
   });
 </script>
 </body>
