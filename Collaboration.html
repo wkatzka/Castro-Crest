@@ -166,7 +166,10 @@
         }
       });
 
-      if (!response.ok) throw new Error('Network response was not ok');
+     const result = await response.text();
+if (!response.ok || result.startsWith("Error")) {
+  throw new Error(result);
+}
 
       message.style.opacity = 1;
       message.style.transform = 'translateY(-220px)';
@@ -180,7 +183,9 @@
       }, 2000);
 
     } catch (error) {
-      alert("Something went wrong. Please try again.");
+  alert("Server Error: " + error.message);
+}
+
     }
   });
 </script>
