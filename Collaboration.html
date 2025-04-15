@@ -66,7 +66,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 48px;
       margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      text-shadow: none;
     }
 
     form {
@@ -74,6 +74,7 @@
       flex-direction: column;
       gap: 15px;
       max-width: 600px;
+      transition: opacity 1s ease;
     }
 
     label {
@@ -85,6 +86,11 @@
       width: 100%;
       border: none;
       border-radius: 4px;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    textarea {
+      maxlength: 2000;
     }
 
     button {
@@ -100,6 +106,17 @@
 
     button:hover {
       background-color: #ddd;
+    }
+
+    #success-message {
+      position: absolute;
+      bottom: 40px;
+      left: 60px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      opacity: 0;
+      transition: transform 2s ease, opacity 2s ease;
     }
   </style>
 </head>
@@ -123,33 +140,33 @@
         <input type="email" id="email" name="email" required>
 
         <label for="proposal">Attach Documents</label>
-<input type="file" id="proposal" name="proposal" required>
+        <input type="file" id="proposal" name="proposal" required>
 
-<label for="message">Message</label>
-<textarea id="message" name="message" rows="4" placeholder="Write a short message..."></textarea>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Write a short message..."></textarea>
 
         <button type="submit">Submit Proposal</button>
       </form>
-<div id="success-message" style="position: relative; color: white; font-weight: bold; font-size: 18px; opacity: 0; transition: all 2s ease; margin-top: 40px;">Success! Your proposal has been submitted.</div>
-</div>
+      <div id="success-message">Success! Your proposal has been submitted.</div>
+    </div>
   </div>
 <script>
   const form = document.querySelector('form');
   const message = document.getElementById('success-message');
 
   form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  message.style.opacity = 1;
-  message.style.transform = 'translateY(-50px)';
+    e.preventDefault();
+    message.style.opacity = 1;
+    message.style.transform = 'translateY(-300px)';
 
-  setTimeout(() => {
-    form.style.opacity = 0;
-  }, 800);
+    setTimeout(() => {
+      form.style.opacity = 0;
+    }, 800);
 
-  setTimeout(() => {
-    form.style.display = 'none';
-  }, 2000);
-});
+    setTimeout(() => {
+      form.style.display = 'none';
+    }, 2000);
+  });
 </script>
 </body>
 </html>
