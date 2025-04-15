@@ -127,7 +127,29 @@
 
         <button type="submit">Submit Proposal</button>
       </form>
-    </div>
+<div id="success-message" style="position: absolute; color: white; font-weight: bold; font-size: 18px; opacity: 0; transition: all 1s ease;">Success! Your proposal has been submitted.</div>
+</div>
   </div>
+<script>
+  const form = document.querySelector('form');
+  const message = document.getElementById('success-message');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formRect = form.getBoundingClientRect();
+    message.style.top = `${form.offsetTop + form.offsetHeight / 2}px`;
+    message.style.left = `${form.offsetLeft}px`;
+    message.style.opacity = 1;
+    message.style.transform = 'translateY(-100px)';
+
+    setTimeout(() => {
+      form.style.opacity = 0;
+    }, 300);
+
+    setTimeout(() => {
+      form.style.display = 'none';
+    }, 1000);
+  });
+</script>
 </body>
 </html>
