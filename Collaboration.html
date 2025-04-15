@@ -6,7 +6,7 @@
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&family=Lora&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -52,7 +52,7 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: transparent;
       padding: 10px 20px;
       border-radius: 5px;
       transition: background-color 0.3s;
@@ -66,7 +66,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 48px;
       margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      text-shadow: none;
     }
 
     form {
@@ -101,6 +101,14 @@
     button:hover {
       background-color: #ddd;
     }
+
+    #success-message {
+      display: none;
+      margin-top: 20px;
+      color: #0f0;
+      font-weight: bold;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
@@ -113,7 +121,7 @@
     <div class="content">
       <h1>Collaboration</h1>
       <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we’d love to explore how we can partner to bring it to life.</p>
-      <form action="mailto:wkatzka@gmail.com" method="POST" enctype="multipart/form-data">
+      <form id="collab-form">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
 
@@ -125,7 +133,17 @@
 
         <button type="submit">Submit Proposal</button>
       </form>
+      <div id="success-message">
+        Success! Your proposal is submitted. We are excited to look it over and get back to you soon!
+      </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('collab-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('success-message').style.display = 'block';
+    });
+  </script>
 </body>
 </html>
