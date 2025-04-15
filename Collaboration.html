@@ -122,12 +122,15 @@
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="proposal">Attach Proposal</label>
-        <input type="file" id="proposal" name="proposal" required>
+        <label for="proposal">Attach Documents</label>
+<input type="file" id="proposal" name="proposal" required>
+
+<label for="message">Message</label>
+<textarea id="message" name="message" rows="4" placeholder="Write a short message..."></textarea>
 
         <button type="submit">Submit Proposal</button>
       </form>
-<div id="success-message" style="position: absolute; color: white; font-weight: bold; font-size: 18px; opacity: 0; transition: all 1s ease;">Success! Your proposal has been submitted.</div>
+<div id="success-message" style="position: absolute; color: white; font-weight: bold; font-size: 18px; opacity: 0; transition: all 2s ease;">Success! Your proposal has been submitted.</div>
 </div>
   </div>
 <script>
@@ -144,11 +147,11 @@
 
     setTimeout(() => {
       form.style.opacity = 0;
-    }, 300);
+    }, 800);
 
     setTimeout(() => {
       form.style.display = 'none';
-    }, 1000);
+    }, 2000);
   });
 </script>
 </body>
