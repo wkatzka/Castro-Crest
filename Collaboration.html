@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Castro Crest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Lora', serif;
+      color: #fff;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    h1 {
+      font-family: 'Special Gothic Expanded One', sans-serif;
+      font-size: 48px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      width: fit-content;
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="thesis.html">Thesis</a>
+    <a href="team.html">Team</a>
+  </nav>
+  <h1>Collaboration</h1>
+  <p>We are seeking intellectually curious, analytically driven candidates with a passion for investing and innovation. Ideal applicants have strong writing skills, comfort with financial modeling, and a track record of curiosity in public or private markets.</p>
+  <form action="mailto:wkatzka@gmail.com" method="POST" enctype="multipart/form-data">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="proposal">Attach Proposal</label>
+    <input type="file" id="proposal" name="proposal" required>
+
+    <button type="submit">Submit Proposal</button>
+  </form>
+</body>
+</html>
