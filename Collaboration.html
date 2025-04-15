@@ -166,10 +166,10 @@
         }
       });
 
-     const result = await response.text();
-if (!response.ok || result.startsWith("Error")) {
-  throw new Error(result);
-}
+      const result = await response.text();
+      if (!response.ok || result.startsWith("Error")) {
+        throw new Error(result);
+      }
 
       message.style.opacity = 1;
       message.style.transform = 'translateY(-220px)';
@@ -183,9 +183,7 @@ if (!response.ok || result.startsWith("Error")) {
       }, 2000);
 
     } catch (error) {
-  alert("Server Error: " + error.message);
-}
-
+      alert("Something went wrong. Please try again.");
     }
   });
 </script>
