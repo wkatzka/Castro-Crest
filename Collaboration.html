@@ -59,11 +59,13 @@
       opacity: 0;
       transform: translateY(-10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
     }
 
     nav.show {
       opacity: 1;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     nav a {
@@ -142,7 +144,7 @@
 </head>
 <body>
   <div class="home-bg">
-    <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
     <nav id="mobileNav">
       <a href="index.html">Home</a>
       <a href="thesis.html">Thesis</a>
@@ -156,18 +158,35 @@
     </div>
   </div>
   <script>
-    function toggleMenu() {
-      const nav = document.getElementById('mobileNav');
-      const toggle = document.getElementById('menuToggle');
-      const isShown = nav.classList.contains('show');
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mobileNav');
 
+    function toggleMenu() {
+      const isShown = nav.classList.contains('show');
       if (isShown) {
         nav.classList.remove('show');
-        toggle.classList.remove('rotate');
+        menuToggle.classList.remove('rotate');
       } else {
         nav.classList.add('show');
-        toggle.classList.add('rotate');
+        menuToggle.classList.add('rotate');
       }
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Desktop hover behavior
+    if (window.innerWidth > 768) {
+      const navArea = document.querySelector('nav');
+
+      menuToggle.addEventListener('mouseenter', () => {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      });
+
+      navArea.addEventListener('mouseleave', () => {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      });
     }
   </script>
 </body>
