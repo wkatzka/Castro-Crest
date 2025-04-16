@@ -6,7 +6,7 @@
   <title>Investment Thesis | Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -15,7 +15,7 @@
     }
 
     html, body {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Bebas Neue', sans-serif;
       color: white;
       height: 100%;
       margin: 0;
@@ -54,15 +54,17 @@
       opacity: 0;
       transform: translateY(-10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
     }
 
     nav.show {
       opacity: 1;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     nav a {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Bebas Neue', sans-serif;
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -89,6 +91,7 @@
     }
 
     p {
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 16px;
       line-height: 1.5;
       margin-bottom: 16px;
@@ -96,27 +99,33 @@
 
     @media (min-width: 769px) {
       .menu-toggle {
-        display: none;
+        display: block;
       }
 
       nav {
-        position: absolute;
-        top: 20px;
-        right: 40px;
-        flex-direction: row;
-        opacity: 1;
-        transform: none;
+        flex-direction: column;
+        top: 70px;
+        right: 20px;
+        pointer-events: none;
+        opacity: 0;
       }
 
-      nav a {
-        font-size: 18px;
-        padding: 10px 20px;
+      nav.show {
+        pointer-events: auto;
+        opacity: 1;
+      }
+
+      .menu-toggle:hover + nav,
+      nav:hover {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
     }
 
     @media (max-width: 768px) {
       .content {
-        margin-right: 120px; /* create buffer for expanded nav */
+        margin-right: 120px;
         margin-left: 20px;
         margin-top: 100px;
       }
@@ -124,7 +133,7 @@
   </style>
 </head>
 <body>
-  <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+  <button class="menu-toggle" id="menuToggle">☰</button>
   <nav id="mobileNav">
     <a href="index.html">Home</a>
     <a href="thesis.html">Thesis</a>
@@ -137,18 +146,32 @@
     <p>Our strategy is grounded in statistical rigor, leveraging historical data trends and regression models to inform options positions, while utilizing SEC filings, market trends, and trial data quality for long-view equity assessment. We aim to identify structural inefficiencies and high-leverage opportunities across public markets, always guided by disciplined research and measured risk.</p>
   </div>
   <script>
-    function toggleMenu() {
-      const nav = document.getElementById('mobileNav');
-      const toggle = document.getElementById('menuToggle');
-      const isShown = nav.classList.contains('show');
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mobileNav');
 
+    function toggleMenu() {
+      const isShown = nav.classList.contains('show');
       if (isShown) {
         nav.classList.remove('show');
-        toggle.classList.remove('rotate');
+        menuToggle.classList.remove('rotate');
       } else {
         nav.classList.add('show');
-        toggle.classList.add('rotate');
+        menuToggle.classList.add('rotate');
       }
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    if (window.innerWidth > 768) {
+      menuToggle.addEventListener('mouseenter', () => {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      });
+
+      nav.addEventListener('mouseleave', () => {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      });
     }
   </script>
 </body>
