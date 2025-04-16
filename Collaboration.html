@@ -2,21 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Updated Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    connect-src 'self' https://api.emailjs.com;
-    script-src 'self' 'unsafe-inline' https://cdn.emailjs.com;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-  ">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
   <style>
-    /* Your CSS styling */
     * {
       margin: 0;
       padding: 0;
@@ -74,7 +65,6 @@
       flex-direction: column;
       gap: 15px;
       max-width: 600px;
-      transition: opacity 1s ease;
     }
     label {
       font-weight: bold;
@@ -102,26 +92,7 @@
     button:hover {
       background-color: #ddd;
     }
-    #success-message {
-      position: absolute;
-      left: 60px;
-      bottom: 40px;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      opacity: 0;
-      transform: translateY(0);
-      transition: transform 2s ease, opacity 2s ease;
-    }
   </style>
-  <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-      // Initialize EmailJS with your user ID (public key)
-      emailjs.init("5LonQ3HPVTjd9jRE1"); // Replace with your actual EmailJS user ID
-    })();
-  </script>
 </head>
 <body>
   <div class="home-bg">
@@ -133,49 +104,19 @@
     <div class="content">
       <h1>Collaboration</h1>
       <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we’d love to explore how we can partner to bring it to life.</p>
-      <form id="collabForm">
+      <form action="https://formsubmit.co/el/rekaco" method="POST">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
+
         <label for="email">Email</label>
         <input type="email" id="email" name="email" required>
+
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Write a short message..."></textarea>
+
         <button type="submit">Submit Proposal</button>
       </form>
-      <div id="success-message">Success! Your proposal has been submitted.</div>
     </div>
   </div>
-  <script>
-    // Listen for the form submission
-    const form = document.getElementById('collabForm');
-    const successMessage = document.getElementById('success-message');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Optionally show a loading state on the submit button
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.textContent;
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      // Use EmailJS to send the form (replace service/template IDs)
-      emailjs.sendForm('service_gjk5zdk', 'template_b4y4hb7', this)
-        .then(function(response) {
-          console.log("SUCCESS", response.status, response.text);
-          // Display success message
-          successMessage.style.opacity = 1;
-          successMessage.style.transform = 'translateY(-220px)';
-          form.style.opacity = 0;
-        }, function(error) {
-          console.error("FAILED", error);
-          alert("Failed to submit. Please email wkatzka@gmail.com directly.");
-        })
-        .finally(function() {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
-        });
-    });
-  </script>
 </body>
 </html>
