@@ -7,10 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <!-- Updated EmailJS SDK to the latest version -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
   <script type="text/javascript">
     (function(){
-      emailjs.init("5LonQ3HPVTjd9jRE1"); // Replace with your actual EmailJS user ID
+      emailjs.init("5LonQ3HPVTjd9jRE1"); // Your EmailJS user ID
     })();
   </script>
   <style>
@@ -116,7 +117,7 @@
     </nav>
     <div class="content">
       <h1>Collaboration</h1>
-      <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we’d love to explore how we can partner to bring it to life.</p>
+      <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we'd love to explore how we can partner to bring it to life.</p>
       <form id="collabForm">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
@@ -133,30 +134,43 @@
     </div>
   </div>
   <script>
-    const form = document.getElementById('collabForm');
-    const confirmation = document.getElementById('confirmation');
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('collabForm');
+      const confirmation = document.getElementById('confirmation');
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const submitBtn = form.querySelector('button');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('button');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
 
-      emailjs.send("service_gjk5zdk", "template_b4y4hb7", {
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value
-      })
-      .then(() => {
-        confirmation.style.display = 'block';
-        form.style.opacity = 0;
-      })
-      .catch(() => {
-        alert("Failed to submit. Please email wkatzka@gmail.com directly.");
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Proposal';
+        // For debugging
+        console.log("Attempting to send email with EmailJS");
+        
+        // Add form field values to template parameters
+        const templateParams = {
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value
+        };
+        
+        // Log the parameters being sent
+        console.log("Template parameters:", templateParams);
+        
+        emailjs.send("service_gjk5zdk", "template_qevgkim", templateParams)
+          .then(function(response) {
+            console.log("SUCCESS!", response.status, response.text);
+            confirmation.style.display = 'block';
+            form.style.opacity = 0;
+          })
+          .catch(function(error) {
+            console.log("FAILED...", error);
+            alert("Failed to submit. Please email wkatzka@gmail.com directly.");
+          })
+          .finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Proposal';
+          });
       });
     });
   </script>
