@@ -6,10 +6,7 @@
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -18,7 +15,7 @@
     }
 
     html, body {
-      font-family: 'Lora', serif;
+      font-family: 'Bebas Neue', sans-serif;
       color: #fff;
       height: 100dvh;
       margin: 0;
@@ -49,6 +46,7 @@
       z-index: 3;
       transition: transform 0.3s ease;
       -webkit-tap-highlight-color: transparent;
+      font-family: 'Bebas Neue', sans-serif;
     }
 
     .menu-toggle.rotate {
@@ -66,15 +64,17 @@
       opacity: 0;
       transform: translateY(-10px);
       transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
     }
 
     nav.show {
       opacity: 1;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     nav a {
-      font-family: 'Oswald', sans-serif;
+      font-family: 'Bebas Neue', sans-serif;
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -103,6 +103,31 @@
       font-size: 65px;
       max-width: 90%;
       word-break: break-word;
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        top: 70px;
+        right: 20px;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      nav.show {
+        pointer-events: auto;
+        opacity: 1;
+      }
+
+      .menu-toggle:hover + nav,
+      nav:hover {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
     }
 
     @media (max-width: 768px) {
@@ -150,6 +175,21 @@
         nav.classList.add('show');
         toggle.classList.add('rotate');
       }
+    }
+
+    if (window.innerWidth > 768) {
+      const nav = document.getElementById('mobileNav');
+      const menuToggle = document.getElementById('menuToggle');
+
+      menuToggle.addEventListener('mouseenter', () => {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      });
+
+      nav.addEventListener('mouseleave', () => {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      });
     }
   </script>
 </body>
