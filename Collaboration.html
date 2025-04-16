@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Investment Thesis | Castro Crest</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Castro Crest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,15 +15,20 @@
     }
 
     html, body {
+      height: 100dvh;
       font-family: 'Bebas Neue', sans-serif;
-      color: white;
-      height: 100%;
-      margin: 0;
+      color: #fff;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    .home-bg {
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      height: 100dvh;
+      width: 100%;
+      position: relative;
     }
 
     .menu-toggle {
@@ -37,7 +42,6 @@
       z-index: 3;
       transition: transform 0.3s ease;
       -webkit-tap-highlight-color: transparent;
-      font-family: 'Bebas Neue', sans-serif;
     }
 
     .menu-toggle.rotate {
@@ -71,9 +75,8 @@
       font-weight: bold;
       font-size: 18px;
       padding: 10px 0;
-      border-radius: 0;
-      background-color: transparent;
       transition: color 0.3s;
+      background-color: transparent;
     }
 
     nav a:hover {
@@ -81,70 +84,77 @@
     }
 
     .content {
-      max-width: 600px;
-      margin: 100px 60px;
+      position: absolute;
+      top: 100px;
+      left: 60px;
+      max-width: 540px;
     }
 
     h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      margin-bottom: 20px;
+      font-size: 124px;
+      margin-bottom: 30px;
     }
 
-    p {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 16px;
-      line-height: 1.5;
-      margin-bottom: 16px;
+    .content p {
+      font-size: 20px;
+      margin-bottom: 30px;
     }
 
-    @media (min-width: 769px) {
-      .menu-toggle {
-        display: block;
-      }
+    .email-button {
+      display: inline-block;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-      nav {
-        flex-direction: column;
-        top: 70px;
-        right: 20px;
-        pointer-events: none;
-        opacity: 0;
-      }
-
-      nav.show {
-        pointer-events: auto;
-        opacity: 1;
-      }
-
-      .menu-toggle:hover + nav,
-      nav:hover {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-      }
+    .email-button:hover {
+      background-color: #ddd;
     }
 
     @media (max-width: 768px) {
+      h1 {
+        font-size: 14vw;
+      }
+
+      .content p {
+        font-size: 4.5vw;
+      }
+
+      .email-button {
+        font-size: 4vw;
+        padding: 8px 16px;
+      }
+
       .content {
-        margin-right: 120px;
-        margin-left: 20px;
-        margin-top: 100px;
+        position: absolute;
+        top: 120px;
+        left: 20px;
+        right: 120px;
+        max-width: none;
       }
     }
   </style>
 </head>
 <body>
-  <button class="menu-toggle" id="menuToggle">☰</button>
-  <nav id="mobileNav">
-    <a href="index.html">Home</a>
-    <a href="thesis.html">Thesis</a>
-    <a href="team.html">Team</a>
-    <a href="Collaboration.html">Collaboration</a>
-  </nav>
-  <div class="content">
-    <h1>Investment Thesis</h1>
-    <p>Castro Crest operates with a hybrid investment approach, primarily focused on the life sciences, biotech, and healthcare sectors. We employ a short-term options trading strategy focused on predictive technical indicators, while also pursuing long-term, fundamentals-based equity positions.</p>
-    <p>Our strategy is grounded in statistical rigor, leveraging historical data trends and regression models to inform options positions, while utilizing SEC filings, market trends, and trial data quality for long-view equity assessment. We aim to identify structural inefficiencies and high-leverage opportunities across public markets, always guided by disciplined research and measured risk.</p>
+  <div class="home-bg">
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="thesis.html">Thesis</a>
+      <a href="team.html">Team</a>
+      <a href="Collaboration.html">Collaboration</a>
+    </nav>
+    <div class="content">
+      <h1>Collaborate</h1>
+      <p>We’re always excited to connect with scientifically minded individuals eager to forge the future of innovation. If you're passionate about identifying untapped potential and pioneering new paths in science and technology, we want to hear from you.</p>
+      <a href="https://formsubmit.co/el/rekaco" target="_blank" class="email-button">Email Us</a>
+    </div>
   </div>
   <script>
     const menuToggle = document.getElementById('menuToggle');
@@ -164,12 +174,14 @@
     menuToggle.addEventListener('click', toggleMenu);
 
     if (window.innerWidth > 768) {
+      const navArea = document.querySelector('nav');
+
       menuToggle.addEventListener('mouseenter', () => {
         nav.classList.add('show');
         menuToggle.classList.add('rotate');
       });
 
-      nav.addEventListener('mouseleave', () => {
+      navArea.addEventListener('mouseleave', () => {
         nav.classList.remove('show');
         menuToggle.classList.remove('rotate');
       });
