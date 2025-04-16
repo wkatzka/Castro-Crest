@@ -1,2 +1,91 @@
-<a href="https://formsubmit.co/el/rekaco" target="_blank">Email us</a>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Castro Crest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #fff;
+      height: 100%;
+      margin: 0;
+    }
+    .home-bg {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: relative;
+      padding: 60px;
+    }
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      font-family: 'Oswald', sans-serif;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      background-color: transparent;
+    }
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+    .email-button {
+      display: inline-block;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .email-button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="home-bg">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="thesis.html">Thesis</a>
+      <a href="team.html">Team</a>
+    </nav>
+    <div class="content">
+      <h1>Contact Us</h1>
+      <p>Click the button below to send us a message.</p>
+      <a href="https://formsubmit.co/el/rekaco" target="_blank" class="email-button">Email Us</a>
+    </div>
+  </div>
+</body>
+</html>
