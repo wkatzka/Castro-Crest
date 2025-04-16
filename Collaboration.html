@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  <!-- Updated EmailJS SDK to the latest version -->
-  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+  <!-- Latest EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/latest/email.min.js"></script>
   <script type="text/javascript">
     (function(){
-      emailjs.init("5LonQ3HPVTjd9jRE1"); // Your EmailJS user ID
+      emailjs.init("s4xlSbWIsvaqrLuq_"); // Updated with correct public key
     })();
   </script>
   <style>
@@ -147,11 +147,14 @@
         // For debugging
         console.log("Attempting to send email with EmailJS");
         
-        // Add form field values to template parameters
+        // Add form field values to template parameters - using standard EmailJS parameter names
         const templateParams = {
+          from_name: form.name.value,
+          reply_to: form.email.value,
+          message: form.message.value,
+          // Adding original parameter names as well to be safe
           name: form.name.value,
-          email: form.email.value,
-          message: form.message.value
+          email: form.email.value
         };
         
         // Log the parameters being sent
