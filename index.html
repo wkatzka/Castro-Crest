@@ -48,6 +48,7 @@
       color: white;
       z-index: 3;
       transition: transform 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .menu-toggle.rotate {
@@ -62,6 +63,14 @@
       flex-direction: column;
       gap: 10px;
       z-index: 2;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    nav.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     nav a {
@@ -78,17 +87,6 @@
 
     nav a:hover {
       color: rgba(255, 255, 255, 0.6);
-    }
-
-    nav.hidden {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-
-    nav.show {
-      max-height: 500px;
-      transition: max-height 0.4s ease;
     }
 
     .overlay-text h1 {
@@ -128,7 +126,7 @@
 <body>
   <div class="home-bg">
     <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
-    <nav id="mobileNav" class="hidden">
+    <nav id="mobileNav">
       <a href="index.html">Home</a>
       <a href="thesis.html">Thesis</a>
       <a href="team.html">Team</a>
@@ -143,9 +141,15 @@
     function toggleMenu() {
       const nav = document.getElementById('mobileNav');
       const toggle = document.getElementById('menuToggle');
-      nav.classList.toggle('show');
-      nav.classList.toggle('hidden');
-      toggle.classList.toggle('rotate');
+      const isShown = nav.classList.contains('show');
+
+      if (isShown) {
+        nav.classList.remove('show');
+        toggle.classList.remove('rotate');
+      } else {
+        nav.classList.add('show');
+        toggle.classList.add('rotate');
+      }
     }
   </script>
 </body>
