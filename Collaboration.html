@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Updated Content-Security-Policy meta tag -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,61 +148,64 @@
       <div id="success-message">Success! Your proposal has been submitted.</div>
     </div>
   </div>
-<script>
-  form.addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  // Show loading state
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const originalBtnText = submitBtn.textContent;
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-
-  try {
-    // Convert form data to plain object
-    const formData = new FormData(form);
-    const formObj = Object.fromEntries(formData.entries());
+  <script>
+    const form = document.getElementById('collabForm');
+    const message = document.getElementById('success-message');
     
-    // Add timestamp
-    formObj.timestamp = new Date().toISOString();
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
     
-    console.log('Submitting:', formObj);
-
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzGkTfQuWhksY6afgj9hFbRVsQAJ0cUJ8HLofkt1XIa8jFDOYQFhJ3bWrQULowiH8bPSQ/exec", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formObj),
-      redirect: 'manual' // Important for Google Apps Script
+      try {
+        // Convert form data to plain object
+        const formData = new FormData(form);
+        const formObj = Object.fromEntries(formData.entries());
+        
+        // Add timestamp
+        formObj.timestamp = new Date().toISOString();
+        
+        console.log('Submitting:', formObj);
+    
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzGkTfQuWhksY6afgj9hFbRVsQAJ0cUJ8HLofkt1XIa8jFDOYQFhJ3bWrQULowiH8bPSQ/exec", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formObj),
+          redirect: 'manual' // Important for Google Apps Script
+        });
+    
+        // Handle potential redirect
+        if (response.type === 'opaqueredirect') {
+          return window.location = response.url;
+        }
+    
+        const result = await response.json();
+        console.log('Response:', result);
+    
+        if (!response.ok || result.status !== 'success') {
+          throw new Error(result.message || 'Submission failed');
+        }
+    
+        // Success handling
+        message.style.opacity = 1;
+        message.style.transform = 'translateY(-220px)';
+        form.style.opacity = 0;
+    
+      } catch (error) {
+        console.error('Error:', error);
+        alert(`Failed to submit. ${error.message}\nPlease email wkatzka@gmail.com directly.`);
+        submitBtn.textContent = 'Try Again';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
     });
-
-    // Handle potential redirect
-    if (response.type === 'opaqueredirect') {
-      return window.location = response.url;
-    }
-
-    const result = await response.json();
-    console.log('Response:', result);
-
-    if (!response.ok || result.status !== 'success') {
-      throw new Error(result.message || 'Submission failed');
-    }
-
-    // Success handling
-    message.style.opacity = 1;
-    message.style.transform = 'translateY(-220px)';
-    form.style.opacity = 0;
-
-  } catch (error) {
-    console.error('Error:', error);
-    alert(`Failed to submit. ${error.message}\nPlease email wkatzka@gmail.com directly.`);
-    submitBtn.textContent = 'Try Again';
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalBtnText;
-  }
-});
-</script>
+  </script>
 </body>
 </html>
