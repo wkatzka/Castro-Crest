@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Investment Thesis | Castro Crest</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -24,12 +26,39 @@
       background-attachment: fixed;
     }
 
-    nav {
+    .menu-toggle {
       position: absolute;
       top: 20px;
-      right: 40px;
+      right: 20px;
+      font-size: 30px;
+      background: transparent;
+      border: none;
+      color: white;
+      z-index: 3;
+      transition: transform 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-toggle.rotate {
+      transform: rotate(90deg);
+    }
+
+    nav {
+      position: absolute;
+      top: 70px;
+      right: 20px;
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    nav.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     nav a {
@@ -38,19 +67,19 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 10px 0;
+      border-radius: 0;
       background-color: transparent;
-      transition: background-color 0.3s;
+      transition: color 0.3s;
     }
 
     nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .content {
       max-width: 600px;
-      margin: 60px;
+      margin: 100px 60px;
     }
 
     h1 {
@@ -64,10 +93,31 @@
       line-height: 1.5;
       margin-bottom: 16px;
     }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      nav {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        flex-direction: row;
+        opacity: 1;
+        transform: none;
+      }
+
+      nav a {
+        font-size: 18px;
+        padding: 10px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav>
+  <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+  <nav id="mobileNav">
     <a href="index.html">Home</a>
     <a href="thesis.html">Thesis</a>
     <a href="team.html">Team</a>
@@ -78,5 +128,20 @@
     <p>Castro Crest operates with a hybrid investment approach, primarily focused on the life sciences, biotech, and healthcare sectors. We employ a short-term options trading strategy focused on predictive technical indicators, while also pursuing long-term, fundamentals-based equity positions.</p>
     <p>Our strategy is grounded in statistical rigor, leveraging historical data trends and regression models to inform options positions, while utilizing SEC filings, market trends, and trial data quality for long-view equity assessment. We aim to identify structural inefficiencies and high-leverage opportunities across public markets, always guided by disciplined research and measured risk.</p>
   </div>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mobileNav');
+      const toggle = document.getElementById('menuToggle');
+      const isShown = nav.classList.contains('show');
+
+      if (isShown) {
+        nav.classList.remove('show');
+        toggle.classList.remove('rotate');
+      } else {
+        nav.classList.add('show');
+        toggle.classList.add('rotate');
+      }
+    }
+  </script>
 </body>
 </html>
