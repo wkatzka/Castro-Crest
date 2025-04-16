@@ -14,18 +14,18 @@
       box-sizing: border-box;
     }
     html, body {
+      height: 100%;
       font-family: 'Bebas Neue', sans-serif;
       color: #fff;
-      height: 100%;
-      margin: 0;
+      background-color: #000; /* fallback in case image doesn't load */
     }
     .home-bg {
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
       height: 100vh;
+      width: 100%;
       position: relative;
-      padding: 60px;
     }
     nav {
       position: absolute;
@@ -46,4 +46,48 @@
       background-color: transparent;
     }
     nav a:hover {
-      background-color
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .content {
+      position: absolute;
+      top: 100px;
+      left: 60px;
+      max-width: 600px;
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+    .email-button {
+      display: inline-block;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .email-button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="home-bg">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="thesis.html">Thesis</a>
+      <a href="team.html">Team</a>
+    </nav>
+    <div class="content">
+      <h1>Collaborate</h1>
+      <p>We’re always excited to connect with scientifically minded individuals eager to forge the future of innovation. If you're passionate about identifying untapped potential and pioneering new paths in science and technology, we want to hear from you.</p>
+      <a href="https://formsubmit.co/el/rekaco" target="_blank" class="email-button">Email Us</a>
+    </div>
+  </div>
+</body>
+</html>
