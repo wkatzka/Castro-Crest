@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-height, height=device-height, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,12 +38,29 @@
       padding: 60px;
     }
 
-    nav {
+    .menu-toggle {
       position: absolute;
       top: 20px;
-      right: 40px;
+      right: 20px;
+      font-size: 30px;
+      background: transparent;
+      border: none;
+      color: white;
+      z-index: 3;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle.rotate {
+      transform: rotate(90deg);
+    }
+
+    nav {
+      position: absolute;
+      top: 70px;
+      right: 20px;
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      gap: 10px;
       z-index: 2;
     }
 
@@ -53,14 +70,25 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+      padding: 10px 0;
+      border-radius: 0;
+      transition: color 0.3s;
       background-color: transparent;
     }
 
     nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    nav.hidden {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    nav.show {
+      max-height: 500px;
+      transition: max-height 0.4s ease;
     }
 
     .overlay-text h1 {
@@ -75,9 +103,10 @@
       left: 60px;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 65px;
+      max-width: 90%;
+      word-break: break-word;
     }
 
-    /* Mobile styles */
     @media (max-width: 768px) {
       .overlay-text h1 {
         font-size: 14vw;
@@ -89,49 +118,17 @@
         left: 30px;
       }
 
-      nav {
-        flex-direction: column;
-        top: 20px;
-        right: 20px;
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 10px;
-        border-radius: 8px;
-        display: none;
-        animation: fadeIn 0.3s ease-in-out;
-      }
-
-      nav.show {
-        display: flex;
-      }
-
-      .menu-toggle {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 30px;
-        background: transparent;
-        border: none;
-        color: white;
-        z-index: 3;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      nav a {
+        font-size: 16px;
+        padding: 8px 0;
       }
     }
   </style>
 </head>
 <body>
   <div class="home-bg">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav id="mobileNav">
+    <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+    <nav id="mobileNav" class="hidden">
       <a href="index.html">Home</a>
       <a href="thesis.html">Thesis</a>
       <a href="team.html">Team</a>
@@ -140,12 +137,15 @@
     <div class="overlay-text">
       <h1>Castro<br />Crest</h1>
     </div>
-    <div class="tagline">projecting bio-x investments into the future</div>
+    <div class="tagline">projecting bio-x<br>investments into the future</div>
   </div>
   <script>
     function toggleMenu() {
       const nav = document.getElementById('mobileNav');
+      const toggle = document.getElementById('menuToggle');
       nav.classList.toggle('show');
+      nav.classList.toggle('hidden');
+      toggle.classList.toggle('rotate');
     }
   </script>
 </body>
