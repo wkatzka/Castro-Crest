@@ -3,93 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Castro Crest</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  
-  <!-- Load EmailJS directly from CDN with specific version -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  
+  <title>FormSubmit Email</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
+    body {
       font-family: 'Bebas Neue', sans-serif;
+      background-color: #1e1e1e;
       color: #fff;
-      height: 100%;
-      margin: 0;
-    }
-    .home-bg {
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      position: relative;
       padding: 60px;
-    }
-    .content {
-      max-width: 800px;
-    }
-    nav {
-      position: absolute;
-      top: 20px;
-      right: 40px;
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      font-family: 'Oswald', sans-serif;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-      background-color: transparent;
-    }
-    nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-    h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      margin-bottom: 30px;
+      text-align: center;
     }
     form {
+      max-width: 500px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      max-width: 600px;
-      transition: opacity 1s ease;
-    }
-    label {
-      font-weight: bold;
     }
     input, textarea {
       padding: 10px;
-      width: 100%;
       border: none;
       border-radius: 4px;
       font-family: 'Bebas Neue', sans-serif;
     }
-    textarea {
-      maxlength: 2000;
-    }
     button {
-      width: fit-content;
-      padding: 10px 20px;
       background-color: #fff;
       color: #000;
       font-weight: bold;
+      padding: 10px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -97,103 +38,18 @@
     button:hover {
       background-color: #ddd;
     }
-    .confirmation {
-      margin-top: 20px;
-      color: #fff;
-      font-size: 18px;
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <div class="home-bg">
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="thesis.html">Thesis</a>
-      <a href="team.html">Team</a>
-    </nav>
-    <div class="content">
-      <h1>Collaboration</h1>
-      <p>Whether you're building something in biotech, innovating in digital health, or exploring a new scientific frontier, we want to hear from you. At Castro Crest, we value rigor, creativity, and execution. If you have an idea or project that aligns with our mission, submit a proposal — we'd love to explore how we can partner to bring it to life.</p>
-      <form id="collabForm">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" maxlength="2000" placeholder="Write a short message..."></textarea>
-
-        <button type="submit">Submit Proposal</button>
-      </form>
-      <div class="confirmation" id="confirmation">Thank you! Your proposal has been submitted.</div>
-    </div>
-  </div>
-  <script>
-    // Initialize EmailJS
-    (function() {
-      // Wait for EmailJS to load
-      if (window.emailjs) {
-        emailjs.init("s4xlSbWIsvaqrLuq_");
-      } else {
-        // If EmailJS isn't available yet, wait and try again
-        window.addEventListener('load', function() {
-          emailjs.init("s4xlSbWIsvaqrLuq_");
-        });
-      }
-    })();
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('collabForm');
-      const confirmation = document.getElementById('confirmation');
-
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const submitBtn = form.querySelector('button');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-
-        try {
-          console.log("Attempting to send email with EmailJS");
-          
-          const templateParams = {
-            from_name: form.name.value,
-            reply_to: form.email.value,
-            message: form.message.value,
-            name: form.name.value,
-            email: form.email.value
-          };
-          
-          console.log("Template parameters:", templateParams);
-          
-          // Check if emailjs exists
-          if (typeof emailjs === 'undefined') {
-            throw new Error("EmailJS library not loaded");
-          }
-          
-          emailjs.send("service_gjk5zdk", "template_qevgkim", templateParams)
-            .then(function(response) {
-              console.log("SUCCESS!", response.status, response.text);
-              confirmation.style.display = 'block';
-              form.style.opacity = 0;
-            })
-            .catch(function(error) {
-              console.log("FAILED...", error);
-              alert("Failed to submit. Please email wkatzka@gmail.com directly.");
-            })
-            .finally(function() {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'Submit Proposal';
-            });
-        } catch (err) {
-          console.error("Error in form submission:", err);
-          alert("Failed to submit. Please email wkatzka@gmail.com directly.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Proposal';
-        }
-      });
-    });
-  </script>
+  <h1>Contact Us</h1>
+  <p>Submit a proposal or send us a message using the form below.</p>
+  <form action="https://formsubmit.co/el/rekaco" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://castrocrest.com/Collaboration.html?success=true">
+    <button type="submit">Send Message</button>
+  </form>
 </body>
 </html>
