@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Updated Content-Security-Policy meta tag -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  <!-- Updated CSP:
+       - Allow connections to script.google.com and script.googleusercontent.com
+       - Allow styles from your own domain plus Google Fonts
+       - Allow fonts from fonts.gstatic.com -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    connect-src 'self' https://script.google.com https://script.googleusercontent.com;
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+  ">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Castro Crest</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,15 +154,15 @@
       submitBtn.textContent = 'Sending...';
 
       try {
-        // Convert form data to plain object
+        // Convert form data to a plain object
         const formData = new FormData(form);
         const formObj = Object.fromEntries(formData.entries());
-        
-        // Add timestamp
+        // Optionally, add a timestamp
         formObj.timestamp = new Date().toISOString();
         console.log('Submitting:', formObj);
 
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzGkTfQuWhksY6afgj9hFbRVsQAJ0cUJ8HLofkt1XIa8jFDOYQFhJ3bWrQULowiH8bPSQ/exec", {
+        // Replace the URL below with your freshly deployed Apps Script URL:
+        const response = await fetch("https://script.google.com/macros/s/AKfycbw47QS_pDBFC3Pf82pvHxkn5Hv9AloiOOUBeySjtOE3SeMYI1rgexrbY3bKpCi7IihaXQ/exec", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -168,7 +177,7 @@
           throw new Error(result.message || 'Submission failed');
         }
 
-        // Success handling
+        // On success, animate the success message:
         message.style.opacity = 1;
         message.style.transform = 'translateY(-220px)';
         form.style.opacity = 0;
