@@ -7,13 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  <!-- Latest EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/latest/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-      emailjs.init("s4xlSbWIsvaqrLuq_"); // Updated with correct public key
-    })();
-  </script>
+  
+  <!-- Load EmailJS directly from CDN with specific version -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
   <style>
     * {
       margin: 0;
@@ -134,6 +131,19 @@
     </div>
   </div>
   <script>
+    // Initialize EmailJS
+    (function() {
+      // Wait for EmailJS to load
+      if (window.emailjs) {
+        emailjs.init("s4xlSbWIsvaqrLuq_");
+      } else {
+        // If EmailJS isn't available yet, wait and try again
+        window.addEventListener('load', function() {
+          emailjs.init("s4xlSbWIsvaqrLuq_");
+        });
+      }
+    })();
+
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('collabForm');
       const confirmation = document.getElementById('confirmation');
@@ -144,36 +154,44 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
 
-        // For debugging
-        console.log("Attempting to send email with EmailJS");
-        
-        // Add form field values to template parameters - using standard EmailJS parameter names
-        const templateParams = {
-          from_name: form.name.value,
-          reply_to: form.email.value,
-          message: form.message.value,
-          // Adding original parameter names as well to be safe
-          name: form.name.value,
-          email: form.email.value
-        };
-        
-        // Log the parameters being sent
-        console.log("Template parameters:", templateParams);
-        
-        emailjs.send("service_gjk5zdk", "template_qevgkim", templateParams)
-          .then(function(response) {
-            console.log("SUCCESS!", response.status, response.text);
-            confirmation.style.display = 'block';
-            form.style.opacity = 0;
-          })
-          .catch(function(error) {
-            console.log("FAILED...", error);
-            alert("Failed to submit. Please email wkatzka@gmail.com directly.");
-          })
-          .finally(function() {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit Proposal';
-          });
+        try {
+          console.log("Attempting to send email with EmailJS");
+          
+          const templateParams = {
+            from_name: form.name.value,
+            reply_to: form.email.value,
+            message: form.message.value,
+            name: form.name.value,
+            email: form.email.value
+          };
+          
+          console.log("Template parameters:", templateParams);
+          
+          // Check if emailjs exists
+          if (typeof emailjs === 'undefined') {
+            throw new Error("EmailJS library not loaded");
+          }
+          
+          emailjs.send("service_gjk5zdk", "template_qevgkim", templateParams)
+            .then(function(response) {
+              console.log("SUCCESS!", response.status, response.text);
+              confirmation.style.display = 'block';
+              form.style.opacity = 0;
+            })
+            .catch(function(error) {
+              console.log("FAILED...", error);
+              alert("Failed to submit. Please email wkatzka@gmail.com directly.");
+            })
+            .finally(function() {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Submit Proposal';
+            });
+        } catch (err) {
+          console.error("Error in form submission:", err);
+          alert("Failed to submit. Please email wkatzka@gmail.com directly.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Proposal';
+        }
       });
     });
   </script>
