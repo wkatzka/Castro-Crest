@@ -15,27 +15,55 @@
     }
 
     html, body {
-      height: 100%;
+      height: 100dvh;
       font-family: 'Bebas Neue', sans-serif;
       color: #fff;
       background-color: #000;
+      overflow: hidden;
     }
 
     .home-bg {
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
-      height: 100vh;
+      height: 100dvh;
       width: 100%;
       position: relative;
     }
 
-    nav {
+    .menu-toggle {
       position: absolute;
       top: 20px;
-      right: 40px;
+      right: 20px;
+      font-size: 30px;
+      background: transparent;
+      border: none;
+      color: white;
+      z-index: 3;
+      transition: transform 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-toggle.rotate {
+      transform: rotate(90deg);
+    }
+
+    nav {
+      position: absolute;
+      top: 70px;
+      right: 20px;
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    nav.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     nav a {
@@ -44,14 +72,14 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: 10px 0;
+      border-radius: 0;
+      transition: color 0.3s;
       background-color: transparent;
-      transition: background-color 0.3s;
     }
 
     nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .content {
@@ -87,11 +115,27 @@
     .email-button:hover {
       background-color: #ddd;
     }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 14vw;
+      }
+
+      .content p {
+        font-size: 4.5vw;
+      }
+
+      .email-button {
+        font-size: 4vw;
+        padding: 8px 16px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="home-bg">
-    <nav>
+    <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+    <nav id="mobileNav">
       <a href="index.html">Home</a>
       <a href="thesis.html">Thesis</a>
       <a href="team.html">Team</a>
@@ -103,5 +147,20 @@
       <a href="https://formsubmit.co/el/rekaco" target="_blank" class="email-button">Email Us</a>
     </div>
   </div>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mobileNav');
+      const toggle = document.getElementById('menuToggle');
+      const isShown = nav.classList.contains('show');
+
+      if (isShown) {
+        nav.classList.remove('show');
+        toggle.classList.remove('rotate');
+      } else {
+        nav.classList.add('show');
+        toggle.classList.add('rotate');
+      }
+    }
+  </script>
 </body>
 </html>
