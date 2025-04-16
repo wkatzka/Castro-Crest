@@ -17,7 +17,7 @@
       height: 100%;
       font-family: 'Bebas Neue', sans-serif;
       color: #fff;
-      background-color: #000; /* fallback in case image doesn't load */
+      background-color: #000; /* fallback */
     }
     .home-bg {
       background-image: url('background.jpg');
@@ -52,12 +52,15 @@
       position: absolute;
       top: 100px;
       left: 60px;
-      max-width: 600px;
+      max-width: 540px; /* tightened right margin */
     }
     h1 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 124px;
       margin-bottom: 30px;
+    }
+    .content p {
+      margin-bottom: 30px; /* match space below h1 */
     }
     .email-button {
       display: inline-block;
