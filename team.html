@@ -134,6 +134,13 @@
       text-decoration: underline;
     }
 
+    /* ── Default (desktop) icon sizing ── */
+    .social-links a img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+
     @media (min-width: 769px) {
       .menu-toggle {
         display: block;
@@ -169,6 +176,8 @@
       .social-links a img {
         width: 4.5vw;
         height: 4.5vw;
+        position: relative;
+        top: 2px;
       }
     }
   </style>
@@ -198,7 +207,6 @@
           <img
             src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/linkedin.svg"
             alt="LinkedIn"
-            width="2" height="2"
           />
           LinkedIn
         </a>
@@ -207,7 +215,6 @@
           <img
             src="pubmed-logo.png"
             alt="PubMed"
-            width="2" height="2"
           />
           Publications
         </a>
