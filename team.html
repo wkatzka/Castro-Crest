@@ -98,13 +98,11 @@
     }
 
     h1, h2 {
-      font-family: 'Bebas Neue', sans-serif;
       font-size: 48px;
       margin-bottom: 20px;
     }
 
     p {
-      font-family: 'Bebas Neue', sans-serif;
       font-size: 18px;
     }
 
@@ -117,11 +115,29 @@
       margin-bottom: 20px;
     }
 
+    /* ── Social links styling ── */
+    .social-links {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .social-links a img {
+      margin-right: 8px;
+    }
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
     @media (min-width: 769px) {
       .menu-toggle {
         display: block;
       }
-
       .menu-toggle:hover + nav,
       nav:hover {
         opacity: 1;
@@ -135,20 +151,24 @@
         font-size: 16px;
         padding: 8px 0;
       }
-
       .content {
         margin-top: -34px;
         margin-right: 30px;
         margin-left: -20px;
         max-width: none;
       }
-
       h1, h2 {
         font-size: 8vw;
       }
-
       p {
         font-size: 4.5vw;
+      }
+      .social-links {
+        font-size: 4.5vw;
+      }
+      .social-links a img {
+        width: 5vw;
+        height: 5vw;
       }
     }
   </style>
@@ -162,14 +182,39 @@
     <a href="team.html">Team</a>
     <a href="Collaboration.html">Collaboration</a>
   </nav>
+
   <div class="home-bg">
     <div class="content">
       <h1>Team</h1>
       <img src="IMG_8011 copy.jpeg" alt="William Katzka">
       <h2>William Katzka — Portfolio Manager</h2>
-      <p>William is a seasoned investor, former collegiate baseball team captain, and former Laboratory Manager and scientific strategist with a decade of research leadership experience at institutions like UCLA and the University of Chicago. His background includes managing multimillion-dollar academic labs, founding biotech service cores, and 17 publications. He currently drives the investment strategy at Castro Crest, blending short term data-driven options modeling with long term deep fundamental analysis in biotech and life sciences markets.</p>
+      <p>
+        William is a seasoned investor, former collegiate baseball team captain, and former Laboratory Manager and scientific strategist with a decade of research leadership experience at institutions like UCLA and the University of Chicago. His background includes managing multimillion-dollar academic labs, founding biotech service cores, and 17 publications. He currently drives the investment strategy at Castro Crest, blending short term data-driven options modeling with long term deep fundamental analysis in biotech and life sciences markets.
+      </p>
+
+      <!-- social links -->
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/william-katzka" target="_blank">
+          <img
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/linkedin.svg"
+            alt="LinkedIn"
+            width="24" height="24"
+          />
+          LinkedIn
+        </a>
+        <br>
+        <a href="https://www.ncbi.nlm.nih.gov/sites/myncbi/will.katzka.1/collections/64655237/public/" target="_blank">
+          <img
+            src="pubmed-logo.png"
+            alt="PubMed"
+            width="24" height="24"
+          />
+          Publications
+        </a>
+      </div>
     </div>
   </div>
+
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mobileNav');
@@ -187,12 +232,10 @@
 
     if (window.innerWidth > 768) {
       const navArea = document.querySelector('nav');
-
       menuToggle.addEventListener('mouseenter', () => {
         nav.classList.add('show');
         menuToggle.classList.add('rotate');
       });
-
       navArea.addEventListener('mouseleave', () => {
         nav.classList.remove('show');
         menuToggle.classList.remove('rotate');
