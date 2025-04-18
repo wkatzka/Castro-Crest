@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0"
+  />
+  <title>Over the Crest</title>
+  <style>
+    /* Reset & container */
+    * { margin:0; padding:0; box-sizing:border-box }
+    body { overflow:hidden; font-family:sans-serif }
+    .hero {
+      position:relative;
+      width:100vw; height:100vh;
+      background: url('background.jpg') center/cover no-repeat;
+    }
+
+    /* ───── Option A: live HTML overlay ───── */
+    .overlay-html {
+      position:absolute;
+      top:35%; /* tweak vertical */
+      left:50%;
+      transform: translateX(-50%);
+      text-transform: uppercase;
+      font-family: 'Bebas Neue', sans-serif;
+      font-weight: bold;
+      color: white;
+      font-size: 10vw;      /* responsive size */
+      line-height: 1;
+    }
+    .overlay-html div {
+      /* make it a left‑aligned block */
+      text-align: left;
+    }
+
+    /* ───── Option B: pre‑rendered slices ───── */
+    .overlay-img {
+      position:absolute;
+      top:35%;            /* same vertical anchor */
+      left:50%;
+      transform: translateX(-50%);
+    }
+    .overlay-img img {
+      display:block;
+      position:relative;
+      /* each slice will start at the same x within this group */
+      left:0;
+    }
+    /* stack the three slices with equal spacing */
+    .overlay-img img.over { top:   0; }
+    .overlay-img img.the  { top: 10vw; }
+    .overlay-img img.crest{ top: 20vw; }
+
+    /* small tweak when you delete unused option */
+  </style>
+
+  <!-- Bebas Neue for Option A -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="hero">
+
+    <!-- Option A: live‑text overlay -->
+    <div class="overlay-html">
+      <div>Over</div>
+      <div>The</div>
+      <div>Crest</div>
+    </div>
+
+    <!-- Option B: three pre‑rendered PNG slices -->
+    <!--
+    <div class="overlay-img">
+      <img src="over.png"   class="over"   alt="OVER">
+      <img src="the.png"    class="the"    alt="THE">
+      <img src="crest.png"  class="crest"  alt="CREST">
+    </div>
+    -->
+
+  </div>
+</body>
+</html>
