@@ -150,6 +150,24 @@
         padding: 8px 0;
       }
     }
+
+    /* ——— Legal footer styles ——— */
+    .legal-footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      margin: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border-top-left-radius: 0.5rem;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .legal-footer p {
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -167,13 +185,12 @@
     </div>
     <div class="tagline">projecting bio-x<br>investments into the future</div>
   </div>
+
+  <!-- simplified footer, no links -->
   <footer class="legal-footer">
-  <p>
-    © 2025 Castro Crest LLC. All rights reserved.  
-    <a href="/privacy.html">Privacy Policy</a> | 
-    <a href="/terms.html">Terms of Use</a>
-  </p>
+    <p>© 2025 Castro Crest LLC. All rights reserved.</p>
   </footer>
+
   <script>
     function toggleMenu() {
       const nav = document.getElementById('mobileNav');
