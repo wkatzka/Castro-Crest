@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Over the Crest | Castro Crest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #fff;
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  .home-bg {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    padding: 60px;
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 50px;
+    background: transparent;
+    border: none;
+    color: white;
+    z-index: 3;
+    transition: transform 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .menu-toggle.rotate {
+    transform: rotate(90deg);
+  }
+
+  nav {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  nav.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  nav a {
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0;
+    transition: color 0.3s;
+    background-color: transparent;
+  }
+
+  nav a:hover {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 70px;
+    margin-bottom: 10px;
+  }
+
+  .tagline-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .article-content {
+    font-family: 'Special Gothic Condensed One', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    margin-top: -34px;
+    margin-right: 30px;
+    margin-left: -20px;
+    max-width: none;
+  }
+
+  .article-content p {
+    margin-bottom: 30px;
+  }
+
+  .article-content img {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+    display: block;
+  }
+
+  @media (min-width: 769px) {
+    .article-content {
+      margin-top: 60px;
+      margin-left: 60px;
+      margin-right: auto;              
+      width: calc(65% - 100px); 
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav a {
+      font-size: 16px;
+      padding: 8px 0;
+    }
+
+    .article-content {
+      font-size: 4.5vw;
+    }
+  }
+        .legal-footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      margin: 1rem;
+      background: transparent;/* remove the white background */
+      padding: 0;            /* remove the extra padding */
+      color: #fff; 
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border-top-left-radius: 0.5rem;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .legal-footer p {
+      margin: 0;
+    }
+</style>
+</head>
+<body>
+  <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+  <nav id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="thesis.html">Thesis</a>
+    <a href="Over the Crest.html">Over the Crest</a>
+    <a href="team.html">Team</a>
+    <a href="Collaboration.html">Collaboration</a>
+  </nav>
+  <div class="home-bg">
+    <div class="article-content">
+      <div class="title-container">
+        <h1 class="stacked-title">
+          <span>Over</span>
+          <span>The</span>
+          <span>Crest</span>
+        </h1>
+        <div class="tagline-sub">Plotting the land beyond the horizon</div>
+      </div>
+
+ <p><strong>Mental Health Innovation: An Inevitable Behavioral Macro Shift</strong><br>
+  <em>How rising distress, growing consumer spend, and an undercapitalized startup ecosystem signal a new phase of opportunity</em></p>
+
+  <p>Historically, mental health has lingered on the margins of medicine—misunderstood, underdiagnosed, and underfunded. But in the last decade, the cultural thaw has accelerated. The ubiquity of therapy in mainstream media, the post-2010s surge in digital health tools, and the universal destabilization brought on by COVID-19 have transformed the mental health landscape into a macroeconomic and societal concern. The stigma is no longer the primary barrier—capacity and innovation are.</p>
+
+  <p>Between 2015 and 2019, prevalence of mental illness among U.S. adults grew at a rate of roughly 3% annually. Following the pandemic through 2023 that rate accelerated to 3.4% annually, reflecting a measurable amplification of distress (NIMH, 2023). Today, over 59 million adults, more than 1 in 5, experience mental illness in the United States (SAMHSA, 2023). But while need is increasing, access to effective, modern treatment has not kept pace. Traditional therapy and SSRIs still dominate a treatment model built in the 20th century, even as 21st-century problems multiply.</p>
+
+  <p>What has kept up? Consumers. Out-of-pocket mental health spending has steadily risen at 7% annually since 2015 (Open Minds, 2023), and new data from KFF shows that consumers are paying a larger share of their healthcare dollars for mental health services year after year. Between 2000 and 2023, the share of total household healthcare spending allocated to out-of-pocket costs rose from 35.4% to over 38% (CMS, 2024). For those with depression or anxiety, the average privately insured individual spent nearly twice as much out-of-pocket compared to peers without a mental health diagnosis (KFF, 2023). The numbers rise even more sharply with severity.</p>
+
+<style>
+  /* Make the <em> source line sit on its own line,
+ 	but with only a tiny margin underneath */
+  figcaption em {
+	display: block;
+	margin-bottom: 0.2em; /* tweak this to taste */
+  }
+
+  /* Prevent figcaption itself from adding big margins */
+  figcaption {
+	margin: 0;
+	padding: 0;
+  }
+</style>
+
+<figure>
+  <img src="Figure 1.png" alt="Normalized Growth Graph">
+  <figcaption>
+	<strong>Figure 1:</strong> Normalized Growth of Mental Health Prevalence, VC Investment, and Consumer Spending (2000–2023)<br>
+	<em>Source: Castro Crest, 2025.</em>
+	Each curve here has been normalized to reflect relative growth over time, not raw values. The result is a clear visualization of trajectory and momentum. The takeaway: mental health demand and consumer spending are accelerating, but investor participation has started to diverge.
+  </figcaption>
+</figure>
+  <p> </p>
+ 	 
+  <p>From 2015 through 2021, VC investment in mental health increased significantly—fueled by broader digital health enthusiasm, pandemic-induced urgency, and the success of early entrants like Talkspace, Lyra, Headspace, and Modern Health. Investors saw promise in scaling care, leveraging teletherapy, and streamlining access through tech. By 2021, VC investment peaked at $3.7 billion globally (Business Insider, 2023). However, as pandemic conditions eased and macroeconomic pressures mounted in 2022 and 2023, investment enthusiasm cooled. Rising interest rates, investor fatigue, and questions around the financial durability of mental health startups drove capital away.</p>
+
+  <p>The timing of this pullback is especially puzzling given that the COVID-19 pandemic intensified the nation’s mental health crisis. Depression, anxiety, substance use, and loneliness surged to record highs. But while consumer demand for mental health care accelerated, investor confidence began to waver—due not to market need, but to skepticism about the sustainability and ethics of early models.</p>
+
+  <p>Some startups were criticized for overprescribing medications, particularly stimulants and SSRIs, in telepsychiatry models that prioritized speed over clinical nuance. These incidents triggered regulatory attention and cast a shadow over the broader sector. Simultaneously, concerns emerged around churn, high CAC-to-LTV ratios, and limited payer integration. Investors who had rushed in during the boom began pulling back—either waiting for more rigorously validated models to emerge or pivoting to safer enterprise or AI-driven plays.</p>
+
+  <p>Yet that pullback was premature. While some early telehealth-first startups struggled with margins, others demonstrated strong retention, employer adoption, and growing payer interest. Platforms like Alma, Headway, and Brightside Health expanded networks and proved that hybrid models could generate revenue while improving access. Moreover, a subset of post-2020 startups are now showing real-world outcomes in reduced symptom severity, improved adherence, and employer-reported productivity gains. These aren't just soft metrics—they're commercially relevant indicators.</p>
+
+  <p>The next phase of innovation won’t come from another startup cut from the same cloth as the pandemic tapestry. It will come from companies that understand the psychological, clinical, and economic complexities of distress—and design around them. Blended care models, payer-integrated virtual platforms, AI-driven diagnostics, and personalized therapeutics all stand at the edge of viability.</p>
+
+  <p>Mental health is not just one more specialty category; it’s the most highlighted negative space of a systemic unmet need in modern life. This is no longer a niche — it’s a macro behavioral health shift. Investors who recognize that, and act on it, won’t just fund the future. They’ll shape it.</p>
+
+  <p>_____________</p>
+ 	 
+  <p><strong>References</strong><br>
+  Business Insider. (2023). Top mental health startups raise millions in VC funding.<br>
+  CMS. (2024). National Health Expenditure Data. https://www.cms.gov<br>
+  Crunchbase. (2024). Mental health startup investment analytics. https://www.crunchbase.com<br>
+  KFF. (2023). Privately insured people with depression and anxiety face high out-of-pocket costs. https://www.kff.org<br>
+  NIMH. (2023). Mental Illness. https://www.nimh.nih.gov<br>
+  Open Minds. (2023). U.S. Behavioral Health Spending Report. https://openminds.com<br>
+  SAMHSA. (2023). National Survey on Drug Use and Health (NSDUH). https://www.samhsa.gov
+  </p>
+	</div>
+  </div>
+  <script>
+
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mobileNav');
+
+    function toggleMenu() {
+      const isShown = nav.classList.contains('show');
+      if (isShown) {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      } else {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      }
+    }
+
+    if (window.innerWidth > 768) {
+      const navArea = document.querySelector('nav');
+
+      menuToggle.addEventListener('mouseenter', () => {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      });
+
+      navArea.addEventListener('mouseleave', () => {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      });
+    }
+  </script>
+  <div style="margin-top: 60px;">
+  <p style="font-family: 'Bebas Neue', sans-serif; font-size: 18px;">
+    <a href="Archive.html" style="color: #fff; text-decoration: none;">→ View Article Archive</a>
+  </p>
+</div>
+</body>
+</html>
