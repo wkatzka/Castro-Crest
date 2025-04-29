@@ -144,6 +144,23 @@
       font-size: 4.5vw;
     }
   }
+        .legal-footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      margin: 1rem;
+      background: transparent;/* remove the white background */
+      padding: 0;            /* remove the extra padding */
+      color: #fff; 
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+      border-top-left-radius: 0.5rem;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .legal-footer p {
+      margin: 0;
+    }
 </style>
 </head>
 <body>
@@ -243,23 +260,6 @@
         nav.classList.remove('show');
         menuToggle.classList.remove('rotate');
       });
-    }
-        .legal-footer {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      margin: 1rem;
-      background: transparent;/* remove the white background */
-      padding: 0;            /* remove the extra padding */
-      color: #fff; 
-      font-size: 0.75rem;
-      padding: 0.5rem 0.75rem;
-      border-top-left-radius: 0.5rem;
-      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
-    .legal-footer p {
-      margin: 0;
     }
   </script>
 </body>
