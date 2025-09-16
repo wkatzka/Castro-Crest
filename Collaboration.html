@@ -8,220 +8,171 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     html, body {
-      height: 100dvh;
+      min-height: 100dvh;            /* allow page to grow */
       font-family: 'Bebas Neue', sans-serif;
-      color: #fff;
-      background-color: #000;
-      overflow: hidden;
+      color:#fff; background:#000;
+      overflow-x: hidden;             /* allow vertical scroll */
+      overflow-y: auto;
     }
 
     .home-bg {
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center;
-      height: 100dvh;
+      min-height: 100dvh;             /* not fixed height */
       width: 100%;
       position: relative;
+      padding-bottom: 96px;           /* room above footer */
     }
 
     .menu-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 50px;
-      background: transparent;
-      border: none;
-      color: white;
-      z-index: 3;
-      transition: transform 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
+      position:absolute; top:20px; right:20px;
+      font-size:50px; background:transparent; border:none; color:#fff;
+      z-index:3; transition:transform .3s ease; -webkit-tap-highlight-color:transparent;
     }
-
-    .menu-toggle.rotate {
-      transform: rotate(90deg);
-    }
+    .menu-toggle.rotate { transform: rotate(90deg); }
 
     nav {
-      position: absolute;
-      top: 70px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
+      position:absolute; top:70px; right:20px; display:flex; flex-direction:column; gap:10px;
+      z-index:2; opacity:0; transform: translateY(-10px); transition: opacity .3s, transform .3s;
+      pointer-events:none;
     }
-
-    nav.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
+    nav.show { opacity:1; transform: translateY(0); pointer-events:auto; }
     nav a {
-      font-family: 'Bebas Neue', sans-serif;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px 0;
-      transition: color 0.3s;
-      background-color: transparent;
+      color:#fff; text-decoration:none; font-weight:bold; font-size:18px; padding:10px 0;
+      transition: color .3s; background:transparent;
     }
+    nav a:hover { color: rgba(255,255,255,.6); }
 
-    nav a:hover {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
+    /* CONTENT: now flows naturally */
     .content {
-      position: absolute;
-      top: 100px;
-      left: 60px;
-      max-width: 540px;
+      position: relative;
+      margin: 100px 60px 0 60px;   /* similar spacing to old absolute offsets */
+      max-width: 720px;            /* a bit wider for long lines */
     }
 
-    h1 {
-      font-size: 124px;
-      margin-bottom: 30px;
+    h1 { font-size:124px; margin-bottom:30px; }
+    .content p { font-size:20px; margin-bottom:30px; line-height:1.25; }
+
+    .email-button,
+    button.email-button {
+      display:inline-block; background:#fff; color:#000; font-weight:bold;
+      padding:10px 20px; border:none; border-radius:5px; text-decoration:none;
+      cursor:pointer; transition: background-color .3s;
+    }
+    .email-button:hover, button.email-button:hover { background:#ddd; }
+
+    /* Weekly Brief form inputs */
+    form.weekly-form { display:flex; gap:10px; flex-wrap:wrap; }
+    form.weekly-form input[type="email"]{
+      flex:1 1 320px; min-width:240px;
+      padding:10px 12px; border-radius:5px; border:1px solid rgba(255,255,255,.25);
+      background: rgba(0,0,0,.35); color:#fff; font-family:inherit; font-size:18px;
+    }
+    form.weekly-form button[type="submit"]{
+      font-size:18px;
     }
 
-    .content p {
-      font-size: 20px;
-      margin-bottom: 30px;
+    .section-spacer { margin-top: 60px; }
+
+    @media (max-width: 768px){
+      h1 { font-size: 14vw; }
+      .content p { font-size: 4.5vw; }
+      .email-button, button.email-button { font-size:4vw; padding:8px 16px; }
+      .content { margin: 120px 20px 0 20px; max-width:none; }
     }
 
-    .email-button {
-      display: inline-block;
-      background-color: #fff;
-      color: #000;
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    .legal-footer {
+      position: fixed; bottom:0; right:0; margin:1rem;
+      background: transparent; color:#fff; font-size:.75rem;
+      padding:.5rem .75rem; border-top-left-radius:.5rem;
+      box-shadow: 0 -1px 4px rgba(0,0,0,.1); z-index:1000;
     }
-
-    .email-button:hover {
-      background-color: #ddd;
+    @media (max-width:768px){
+      .legal-footer { position: static; margin: 2rem auto 1rem; text-align:center; box-shadow:none; }
     }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 14vw;
-      }
-
-      .content p {
-        font-size: 4.5vw;
-      }
-
-      .email-button {
-        font-size: 4vw;
-        padding: 8px 16px;
-      }
-
-      .content {
-        position: absolute;
-        top: 120px;
-        left: 20px;
-        right: 120px;
-        max-width: none;
-      }
-    }
-        .legal-footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  margin: 1rem;
-  background: transparent;
-  color: #fff;
-  font-size: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border-top-left-radius: 0.5rem;
-  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
-
-/* Override on mobile: static position (page bottom) */
-@media (max-width: 768px) {
-  .legal-footer {
-    position: static;
-    margin: 2rem auto 1rem auto;
-    text-align: center;
-    box-shadow: none;
-  }
-}
   </style>
 </head>
 <body>
   <div class="home-bg">
+    <!-- MENU -->
     <button class="menu-toggle" id="menuToggle">☰</button>
     <nav id="mobileNav">
-    <a href="index.html">Home</a>
-    <a href="thesis.html">Thesis</a>
-    <a href="Over the Crest.html">Over the Crest</a>
-    <a href="team.html">Team</a>
-    <a href="Collaboration.html">Collaboration</a>
+      <a href="index.html">Home</a>
+      <a href="thesis.html">Thesis</a>
+      <a href="Over the Crest.html">Over the Crest</a>
+      <a href="team.html">Team</a>
+      <a href="Collaboration.html">Collaboration</a>
     </nav>
+
+    <!-- SECTION 1: Collaborate -->
     <div class="content">
       <h1>Collaborate</h1>
       <p>We’re always excited to connect with scientifically minded individuals eager to forge the future of innovation. If you're passionate about identifying untapped potential and pioneering new paths in science and technology, we want to hear from you.</p>
       <a href="https://formsubmit.co/el/rekaco" target="_blank" class="email-button">Email Us</a>
     </div>
-    <div class="content">
+
+    <!-- SECTION 2: Weekly Brief -->
+    <div class="content section-spacer">
       <h1>Weekly Brief</h1>
       <p>Every week we distill the most important upcoming biotech and healthcare catalysts into one clear, actionable email. Each brief highlights the event, timing, and potential impact on a company’s growth and profitability, with attached CSV/Markdown for deeper analysis. Delivered before the market opens so you can plan ahead.</p>
-  <form action="https://hooks.zapier.com/hooks/catch/24585316/um3dllc/" method="POST">
-    <input type="email" name="email" placeholder="you@domain.com" required>
-    <input type="hidden" name="product" value="weekly-brief">
-    <button type="submit" class="email-button">Sign Up</button>
-  </form>
+
+      <!-- Signup form posting to Zapier Catch Hook -->
+      <form class="weekly-form" action="https://hooks.zapier.com/hooks/catch/24585316/um3dllc/" method="POST">
+        <input type="email" name="email" placeholder="you@domain.com" required aria-label="Email address">
+        <input type="hidden" name="product" value="weekly-brief">
+        <input type="hidden" name="source" value="castrocrest.com/weekly-brief">
+        <button type="submit" class="email-button">Sign Up</button>
+      </form>
+
+      <!-- Inline success/fail messages (optional JS below toggles them) -->
+      <div id="okMsg" style="display:none; margin-top:12px; color:#4ade80;">Thanks! Check your inbox to confirm your subscription.</div>
+      <div id="errMsg" style="display:none; margin-top:12px; color:#f87171;">Something went wrong. Please try again.</div>
     </div>
   </div>
-    <footer class="legal-footer">
-    <p>© 2025 Castro Crest LLC. All rights reserved.</p>
+
+  <footer class="legal-footer">
+    <p>© 2025 Castro Crest LLC. All rights reserved.</p>
   </footer>
+
   <script>
+    // Mobile menu interactions
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mobileNav');
-
-    function toggleMenu() {
+    function toggleMenu(){
       const isShown = nav.classList.contains('show');
-      if (isShown) {
-        nav.classList.remove('show');
-        menuToggle.classList.remove('rotate');
-      } else {
-        nav.classList.add('show');
-        menuToggle.classList.add('rotate');
-      }
+      if (isShown){ nav.classList.remove('show'); menuToggle.classList.remove('rotate'); }
+      else { nav.classList.add('show'); menuToggle.classList.add('rotate'); }
     }
-
     menuToggle.addEventListener('click', toggleMenu);
 
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 768){
       const navArea = document.querySelector('nav');
-
-      menuToggle.addEventListener('mouseenter', () => {
-        nav.classList.add('show');
-        menuToggle.classList.add('rotate');
-      });
-
-      navArea.addEventListener('mouseleave', () => {
-        nav.classList.remove('show');
-        menuToggle.classList.remove('rotate');
-      });
+      menuToggle.addEventListener('mouseenter', () => { nav.classList.add('show'); menuToggle.classList.add('rotate'); });
+      navArea.addEventListener('mouseleave', () => { nav.classList.remove('show'); menuToggle.classList.remove('rotate'); });
     }
+
+    // Optional: keep user on-page and show success/fail without redirect
+    (function(){
+      const form = document.querySelector('form.weekly-form');
+      const ok = document.getElementById('okMsg');
+      const err = document.getElementById('errMsg');
+      if(!form) return;
+
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        ok.style.display='none'; err.style.display='none';
+        const data = new FormData(form);
+        try{
+          const res = await fetch(form.action, { method:'POST', body:data });
+          if(res.ok){ ok.style.display='block'; form.reset(); }
+          else { err.style.display='block'; }
+        }catch(_){ err.style.display='block'; }
+      });
+    }());
   </script>
 </body>
 </html>
