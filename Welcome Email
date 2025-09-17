@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team | Castro Crest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Bebas Neue', sans-serif;
+      color: #fff;
+      margin: 0;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .home-bg {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: relative;
+      padding: 60px;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 50px;
+      background: transparent;
+      border: none;
+      color: white;
+      z-index: 3;
+      transition: transform 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-toggle.rotate {
+      transform: rotate(90deg);
+    }
+
+    nav {
+      position: fixed;
+      top: 70px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    nav.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    nav a {
+      font-family: 'Bebas Neue', sans-serif;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px 0;
+      transition: color 0.3s;
+      background-color: transparent;
+    }
+
+    nav a:hover {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .content {
+      max-width: 800px;
+      margin-top: 20px;
+      margin-left: 60px;
+    }
+
+    h1, h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      object-position: 48% 50%;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    /* ── Social links styling ── */
+    .social-links {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .social-links a img {
+      margin-right: 8px;
+    }
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Default (desktop) icon sizing ── */
+    .social-links a img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      position: relative;
+      top: 9px; 
+    }
+
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: block;
+      }
+      .menu-toggle:hover + nav,
+      nav:hover {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav a {
+        font-size: 16px;
+        padding: 8px 0;
+      }
+      .content {
+        margin-top: -34px;
+        margin-right: 30px;
+        margin-left: -20px;
+        max-width: none;
+      }
+      h1, h2 {
+        font-size: 8vw;
+      }
+      p {
+        font-size: 4.5vw;
+      }
+      .social-links {
+        font-size: 4.5vw;
+      }
+      .social-links a img {
+        width: 4.5vw;
+        height: 4.5vw;
+        position: relative;
+        top: 9px;
+      }
+    }
+      .legal-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  background: transparent;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-top-left-radius: 0.5rem;
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+/* Override on mobile: static position (page bottom) */
+@media (max-width: 768px) {
+  .legal-footer {
+    position: static;
+    margin: 2rem auto 1rem auto;
+    text-align: center;
+    box-shadow: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <button class="menu-toggle" onclick="toggleMenu()" id="menuToggle">☰</button>
+  <nav id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="thesis.html">Thesis</a>
+    <a href="Over the Crest.html">Over the Crest</a>
+    <a href="team.html">Team</a>
+    <a href="Collaboration.html">Collaboration</a>
+  </nav>
+
+  <div class="home-bg">
+    <div class="content">
+       <h1>Castro Crest Weekly Briefing</h1>
+      <p>Thank you for subscribing to our Weekly Briefing!</p>
+      <p>Every Monday morning at 8 AM EST we deliver the most important upcoming biotech and healthcare catalysts straight to your inbox.</p>
+      <p>We’re excited to have you as part of our community.</p>
+      <p>Best regards,<br>The Castro Crest Team</p>
+    </div>
+  </div>
+    <footer class="legal-footer">
+    <p>© 2025 Castro Crest LLC. All rights reserved.</p>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mobileNav');
+
+    function toggleMenu() {
+      const isShown = nav.classList.contains('show');
+      if (isShown) {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      } else {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      }
+    }
+
+    if (window.innerWidth > 768) {
+      const navArea = document.querySelector('nav');
+      menuToggle.addEventListener('mouseenter', () => {
+        nav.classList.add('show');
+        menuToggle.classList.add('rotate');
+      });
+      navArea.addEventListener('mouseleave', () => {
+        nav.classList.remove('show');
+        menuToggle.classList.remove('rotate');
+      });
+    }
+  </script>
+</body>
+</html>
