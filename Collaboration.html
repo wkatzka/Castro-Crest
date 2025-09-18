@@ -13,20 +13,21 @@
     html, body {
       min-height: 100dvh;            /* allow page to grow */
       font-family: 'Bebas Neue', sans-serif;
-      color:#fff; background:#000;
+      color:#fff; background: none;
       overflow-x: hidden;             /* allow vertical scroll */
       overflow-y: auto;
     }
 
     .home-bg {
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-position: center;
-      min-height: 100dvh;             /* not fixed height */
-      width: 100%;
-      position: relative;
-      padding-bottom: 96px;           /* room above footer */
-    }
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;       /* cover viewport height */
+  width: 100%;
+  position: relative;
+  margin: 0;               /* ensure no margin at top */
+  padding-top: 0;
+}
 
     .menu-toggle {
       position:absolute; top:20px; right:20px;
@@ -48,11 +49,13 @@
     nav a:hover { color: rgba(255,255,255,.6); }
 
     /* CONTENT: now flows naturally */
-    .content {
-      position: relative;
-      margin: 100px 60px 0 60px;   /* similar spacing to old absolute offsets */
-      max-width: 720px;            /* a bit wider for long lines */
-    }
+.content {
+  position: relative;
+  margin: 0 auto;             /* center horizontally */
+  padding: 100px 60px 40px;   /* top/bottom padding for spacing */
+  max-width: 720px;
+  text-align: center;         /* center the text */
+}
 
     h1 { font-size:124px; margin-bottom:30px; }
     .content p { font-size:20px; margin-bottom:30px; line-height:1.25; }
