@@ -9,95 +9,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-
-    html, body {
-      min-height: 100dvh;            /* allow page to grow */
-      font-family: 'Bebas Neue', sans-serif;
-      color:#fff; background: none;
-      overflow-x: hidden;             /* allow vertical scroll */
-      overflow-y: auto;
-    }
+    html, body { min-height:100dvh; font-family:'Bebas Neue', sans-serif; color:#fff; background:none; overflow-x:hidden; overflow-y:auto; }
 
     .home-bg {
-  background-image: url('background.jpg');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;       /* cover viewport height */
-  width: 100%;
-  position: relative;
-  margin: 0;               /* ensure no margin at top */
-  padding-top: 100px;
-}
-
-    .menu-toggle {
-      position:absolute; top:20px; right:20px;
-      font-size:50px; background:transparent; border:none; color:#fff;
-      z-index:3; transition:transform .3s ease; -webkit-tap-highlight-color:transparent;
+      background-image:url('background.jpg');
+      background-size:cover; background-position:center;
+      min-height:100vh; width:100%; position:relative; margin:0; padding-top:100px;
     }
-    .menu-toggle.rotate { transform: rotate(90deg); }
 
-    nav {
-      position:absolute; top:70px; right:20px; display:flex; flex-direction:column; gap:10px;
-      z-index:2; opacity:0; transform: translateY(-10px); transition: opacity .3s, transform .3s;
-      pointer-events:none;
-    }
-    nav.show { opacity:1; transform: translateY(0); pointer-events:auto; }
-    nav a {
-      color:#fff; text-decoration:none; font-weight:bold; font-size:18px; padding:10px 0;
-      transition: color .3s; background:transparent;
-    }
-    nav a:hover { color: rgba(255,255,255,.6); }
+    .menu-toggle { position:absolute; top:20px; right:20px; font-size:50px; background:transparent; border:none; color:#fff; z-index:3; transition:transform .3s ease; -webkit-tap-highlight-color:transparent; }
+    .menu-toggle.rotate { transform:rotate(90deg); }
 
-    /* CONTENT: now flows naturally */
-.content {
-  position: relative;
-  /* ↓ this is the line to change */
-  margin: 1px 60px 0 60px;  /* was 100px at top — try 40px to move up */
-  padding: 60px 60px 40px;   /* was 100px at top — also reduce if you want tighter spacing */
-  max-width: 720px;
-  text-align: left;
-}
+    nav { position:absolute; top:70px; right:20px; display:flex; flex-direction:column; gap:10px; z-index:2; opacity:0; transform:translateY(-10px); transition:opacity .3s, transform .3s; pointer-events:none; }
+    nav.show { opacity:1; transform:translateY(0); pointer-events:auto; }
+    nav a { color:#fff; text-decoration:none; font-weight:bold; font-size:18px; padding:10px 0; transition:color .3s; background:transparent; }
+    nav a:hover { color:rgba(255,255,255,.6); }
 
+    .content { position:relative; margin:1px 60px 0 60px; padding:60px 60px 40px; max-width:720px; text-align:left; }
     h1 { font-size:124px; margin-bottom:30px; }
     .content p { font-size:20px; margin-bottom:30px; line-height:1.25; }
 
-    .email-button,
-    button.email-button {
+    .email-button, button.email-button {
       display:inline-block; background:#fff; color:#000; font-weight:bold;
       padding:10px 20px; border:none; border-radius:5px; text-decoration:none;
-      cursor:pointer; transition: background-color .3s;
+      cursor:pointer; transition:background-color .3s;
     }
     .email-button:hover, button.email-button:hover { background:#ddd; }
 
-    /* Weekly Brief form inputs */
-    form.weekly-form { display:flex; gap:10px; flex-wrap:wrap; }
+    form.weekly-form { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start; }
     form.weekly-form input[type="email"]{
       flex:1 1 320px; min-width:240px;
       padding:10px 12px; border-radius:5px; border:1px solid rgba(255,255,255,.25);
-      background: rgba(0,0,0,.35); color:#fff; font-family:inherit; font-size:18px;
+      background:rgba(0,0,0,.35); color:#fff; font-family:inherit; font-size:18px;
     }
-    form.weekly-form button[type="submit"]{
-      font-size:18px;
-    }
+    form.weekly-form button[type="submit"]{ font-size:18px; }
+    .hint { font-size:14px; opacity:.9; margin-top:4px; }
+    .error { color:#f87171; margin-top:8px; }
+    .success { color:#4ade80; margin-top:12px; }
 
-    .section-spacer { margin-top: 60px; }
+    .section-spacer { margin-top:60px; }
 
-    @media (max-width: 768px){
-      h1 { font-size: 14vw; }
-      .content p { font-size: 4.5vw; }
-      .email-button, button.email-button { font-size:4vw; padding:8px 16px; }
-      .content { margin: 120px 20px 0 20px; max-width:none; }
-    }
-
-    .legal-footer {
-      position: fixed; bottom:0; right:0; margin:1rem;
-      background: transparent; color:#fff; font-size:.75rem;
-      padding:.5rem .75rem; border-top-left-radius:.5rem;
-      box-shadow: 0 -1px 4px rgba(0,0,0,.1); z-index:1000;
-    }
     @media (max-width:768px){
-      .legal-footer { position: static; margin: 2rem auto 1rem; text-align:center; box-shadow:none; }
+      h1 { font-size:14vw; }
+      .content p { font-size:4.5vw; }
+      .email-button, button.email-button { font-size:4vw; padding:8px 16px; }
+      .content { margin:120px 20px 0 20px; max-width:none; }
     }
+
+    .legal-footer { position:fixed; bottom:0; right:0; margin:1rem; background:transparent; color:#fff; font-size:.75rem; padding:.5rem .75rem; border-top-left-radius:.5rem; box-shadow:0 -1px 4px rgba(0,0,0,.1); z-index:1000; }
+    @media (max-width:768px){ .legal-footer { position:static; margin:2rem auto 1rem; text-align:center; box-shadow:none; } }
+
+    /* Honeypot stays hidden and unfocusable */
+    .hp { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
   </style>
 </head>
 <body>
@@ -125,16 +88,36 @@
       <p>Every week we distill the most important upcoming biotech and healthcare catalysts into one clear, actionable email. Each brief highlights the event, timing, and potential impact on a company’s growth and profitability. Delivered before market open so you can plan ahead.</p>
 
       <!-- Signup form posting to Zapier Catch Hook -->
-      <form class="weekly-form" action="https://hooks.zapier.com/hooks/catch/24585316/umw4bfg/" method="POST">
-        <input type="email" name="email" placeholder="you@domain.com" required aria-label="Email address">
+      <form class="weekly-form" id="weeklyForm" action="https://hooks.zapier.com/hooks/catch/24585316/umw4bfg/" method="POST" autocomplete="on">
+        <div style="width:100%">
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="you@domain.com"
+            inputmode="email"
+            autocomplete="email"
+            required
+            minlength="6"
+            maxlength="254"
+            aria-label="Email address"
+            pattern="^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$"
+          >
+          <div id="emailHint" class="hint">Use a valid inbox. Disposable or placeholder emails are blocked.</div>
+          <div id="errMsg" class="error" style="display:none"></div>
+          <div id="okMsg" class="success" style="display:none">Thanks. Check your inbox to confirm your subscription.</div>
+        </div>
+
+        <!-- Hidden fields sent to Zapier -->
         <input type="hidden" name="product" value="weekly-brief">
         <input type="hidden" name="source" value="castrocrest.com/weekly-brief">
-        <button type="submit" class="email-button">Sign Up</button>
-      </form>
 
-      <!-- Inline success/fail messages (optional JS below toggles them) -->
-      <div id="okMsg" style="display:none; margin-top:12px; color:#4ade80;">Thanks! Check your inbox to confirm your subscription.</div>
-      <div id="errMsg" style="display:none; margin-top:12px; color:#f87171;">Something went wrong. Please try again.</div>
+        <!-- Honeypot and timing trap -->
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="hp" type="text" name="load_ts" id="loadTs" aria-hidden="true" tabindex="-1">
+
+        <button type="submit" class="email-button" id="submitBtn">Sign Up</button>
+      </form>
     </div>
   </div>
 
@@ -143,7 +126,7 @@
   </footer>
 
   <script>
-    // Mobile menu interactions
+    // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mobileNav');
     function toggleMenu(){
@@ -152,29 +135,124 @@
       else { nav.classList.add('show'); menuToggle.classList.add('rotate'); }
     }
     menuToggle.addEventListener('click', toggleMenu);
-
     if (window.innerWidth > 768){
       const navArea = document.querySelector('nav');
       menuToggle.addEventListener('mouseenter', () => { nav.classList.add('show'); menuToggle.classList.add('rotate'); });
       navArea.addEventListener('mouseleave', () => { nav.classList.remove('show'); menuToggle.classList.remove('rotate'); });
     }
 
-    // Optional: keep user on-page and show success/fail without redirect
+    // Form validation and safe submit
     (function(){
-      const form = document.querySelector('form.weekly-form');
-      const ok = document.getElementById('okMsg');
-      const err = document.getElementById('errMsg');
+      const form = document.getElementById('weeklyForm');
       if(!form) return;
+
+      const emailInput = document.getElementById('email');
+      const err = document.getElementById('errMsg');
+      const ok = document.getElementById('okMsg');
+      const btn = document.getElementById('submitBtn');
+      const loadTs = document.getElementById('loadTs');
+
+      // record page load time
+      loadTs.value = String(Date.now());
+
+      // simple blacklist for placeholders and disposable domains
+      const blockedDomains = new Set([
+        'example.com','test.com','mailinator.com','yopmail.com','10minutemail.com',
+        'guerrillamail.com','sharklasers.com','trashmail.com','tempmail.com',
+        'temp-mail.org','getnada.com','dispostable.com','throwawaymail.com'
+      ]);
+      const blockedLocals = new Set(['test','fake','none','no-reply','noreply','invalid','sample']);
+
+      function normalizeEmail(v){ return String(v || '').trim().toLowerCase(); }
+
+      function looksValidSyntax(v){
+        // basic RFC-like check without being overly permissive
+        const re = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+        return re.test(v) && v.length <= 254;
+      }
+
+      function isBlocked(v){
+        const [local, domain] = v.split('@');
+        if (!local || !domain) return true;
+        if (blockedLocals.has(local)) return true;
+        if (blockedDomains.has(domain)) return true;
+        // block obvious placeholders like "you@domain.com"
+        if (['you','your','name','email'].includes(local) && /domain\.com$/.test(domain)) return true;
+        return false;
+      }
+
+      function tooFast(){
+        const now = Date.now();
+        const t0 = Number(loadTs.value || now);
+        // require at least 3 seconds on page
+        return (now - t0) < 3000;
+      }
+
+      emailInput.addEventListener('input', () => {
+        emailInput.setCustomValidity('');
+        err.style.display = 'none';
+        ok.style.display = 'none';
+      });
 
       form.addEventListener('submit', async function(e){
         e.preventDefault();
-        ok.style.display='none'; err.style.display='none';
-        const data = new FormData(form);
+        err.style.display = 'none';
+        ok.style.display = 'none';
+
+        const email = normalizeEmail(emailInput.value);
+
+        // HTML5 check first
+        if (!emailInput.checkValidity()){
+          emailInput.setCustomValidity('Enter a valid email address.');
+          err.textContent = 'Enter a valid email address.';
+          err.style.display = 'block';
+          emailInput.reportValidity();
+          return;
+        }
+
+        // custom checks
+        if (!looksValidSyntax(email)){
+          err.textContent = 'Email format is invalid.';
+          err.style.display = 'block';
+          return;
+        }
+        if (isBlocked(email)){
+          err.textContent = 'Disposable or placeholder emails are not allowed.';
+          err.style.display = 'block';
+          return;
+        }
+        if (tooFast()){
+          err.textContent = 'Please wait a moment and try again.';
+          err.style.display = 'block';
+          return;
+        }
+
+        // honeypot must be empty
+        const hp = form.querySelector('input[name="website"]');
+        if (hp && hp.value){
+          // silently drop
+          return;
+        }
+
+        btn.disabled = true;
         try{
+          const data = new FormData(form);
           const res = await fetch(form.action, { method:'POST', body:data });
-          if(res.ok){ ok.style.display='block'; form.reset(); }
-          else { err.style.display='block'; }
-        }catch(_){ err.style.display='block'; }
+          if (res.ok){
+            ok.style.display = 'block';
+            form.reset();
+            // reset timer so repeat submits are not flagged
+            loadTs.value = String(Date.now());
+          } else {
+            err.textContent = 'Submission failed. Try again.';
+            err.style.display = 'block';
+          }
+        } catch(_){
+          err.textContent = 'Network error. Try again.';
+          err.style.display = 'block';
+        } finally {
+          btn.disabled = false;
+        }
       });
     }());
   </script>
